@@ -1,0 +1,1 @@
+const divideBtn = document.getElementById('usdInputBuy');

@@ -5,6 +5,16 @@ require_once "config.php";
 
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
+
+function getRate(){
+
+    $conn = mysqli_connect('localhost', 'root', '', 'praktika');
+    $result = mysqli_query($conn, "SELECT Price FROM kaukocoinex ORDER BY Date DESC LIMIT 1");
+    $row = mysqli_fetch_array($result);
+    $rate = $row['Price'];
+
+    return $rate;
+}
  
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -58,18 +68,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // exit();}
     
 
-    // imputu check'as
+    // inputu check'as
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO users (username, password, money) VALUES (?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
           
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_money);
 
             
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // slaptazodzio 'hash'
+            $param_money = getRate();
             
             if(mysqli_stmt_execute($stmt)){
                 header("location: login.php");

@@ -4,6 +4,7 @@ require_once "config.php";
 //kintamieji
 $username = $password = "";
 $username_err = $password_err = "";
+$money = "";
  
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
@@ -23,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
     if(empty($username_err) && empty($password_err)){
  
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password, money FROM users WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
 
@@ -36,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 //tikrina ar jau toks username egzistuoja
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $money);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                           
@@ -45,7 +46,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                           
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username; 
+                            $_SESSION["money"] = $money;                               
                             
                           
                             header("location: index.php");
