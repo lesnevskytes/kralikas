@@ -146,7 +146,7 @@ $rate = $row2['Price'];
                 <h5>KCE buy price: <?php echo $rate + 34.52; ?> $ </h5>
           
                 For how much you want to buy? 
-                <input id="usdInputBuy" name="buyKCEwithUSD" type="text"><br>
+                <input id="usdInputBuy" name="buyKCEwithUSD" type="text" required><br>
                 <input type="hidden" name="user_id" value="<?php echo $_SESSION["id"]; ?>"><br>
                  You would get <span id="KCE_buy">0</span> KCE
                 <input type="hidden" id="KCEfromUSD_buy" name="KCEfromUSD_buy" >
@@ -177,7 +177,7 @@ $rate = $row2['Price'];
                 <h5>KCE sell price: <?php echo $rate - 34.52; ?> $ </h5>
           
                 How much you want to sell? 
-                <input id="kceInputSell" name="buyUSDwithKCE" type="text"><br>
+                <input id="kceInputSell" name="buyUSDwithKCE" type="text" required><br>
                 <input type="hidden" name="user_id" value="<?php echo $_SESSION["id"]; ?>"><br>
                 You would get <span id="usd_sell">0</span> $
                 <input type="hidden" id="KCEtoUSD_sell" name="KCEtoUSD_sell" >
