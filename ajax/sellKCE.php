@@ -23,13 +23,13 @@ if (isset($_POST['buyUSDwithKCE']) && isset($_POST['user_id']) && isset($_POST['
         $sql = "UPDATE users SET money=($money + $USD_got), kce=($currentKCE - $userInputValue) WHERE id=$userId";
 
         if ($conn->query($sql) === TRUE) {
-            echo json_encode('Congrats! You sold '. $userInputValue .' KCE for'.$USD_got );
+            echo json_encode(array('message' => 'Congrats! You sold '. $userInputValue .' KCE for'.$USD_got, 'success' => true));
         } else {
-            echo json_encode('Error updating record');
+            echo json_encode(array('message' => "Updating balance ERROR", 'success' => false));
         }
     }
     else{
-        echo json_encode('Insufficient balance');
+        echo json_encode(array('message' => "Insufficient balance", 'success' => false));
     }
 
 

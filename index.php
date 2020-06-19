@@ -263,10 +263,17 @@ $rate = $row2['Price'];
             type: "post",
             data: $(this).serialize() ,
             success: function (response) {
-              currentUSD.innerHTML = parseFloat(currentUSD.innerHTML) - usdSpent;
-              currentKCE.innerHTML = parseFloat(currentKCE.innerHTML) + kceBought;
-              $('#buyModal').modal('toggle');
-              alert(response);   
+              const obj = JSON.parse(response);
+              if(obj.success){
+                currentUSD.innerHTML = (parseFloat(currentUSD.innerHTML) - usdSpent).toFixed(2);
+                currentKCE.innerHTML = (parseFloat(currentKCE.innerHTML) + kceBought).toFixed(6);
+                $('#buyModal').modal('toggle');
+                alert(obj.message);
+              }else{
+                alert(obj.message);
+              }
+
+
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
@@ -281,10 +288,15 @@ $rate = $row2['Price'];
             type: "post",
             data: $(this).serialize() ,
             success: function (response) {
-              currentUSD.innerHTML = parseFloat(currentUSD.innerHTML) + usdBought;
-              currentKCE.innerHTML = parseFloat(currentKCE.innerHTML) - kceSpent;
-              $('#sellModal').modal('toggle');
-              alert(response);   
+              const obj = JSON.parse(response);
+              if(obj.success){
+                currentUSD.innerHTML = (parseFloat(currentUSD.innerHTML) + usdBought).toFixed(2);
+                currentKCE.innerHTML = (parseFloat(currentKCE.innerHTML) - kceSpent).toFixed(6);
+                $('#sellModal').modal('toggle');
+                alert(obj.message);
+              }else{
+                alert(obj.message);
+              }   
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(textStatus, errorThrown);
