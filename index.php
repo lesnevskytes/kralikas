@@ -151,12 +151,10 @@ $rate = $row2['Price'];
                  You would get <span id="KCE_buy">0</span> KCE
                 <input type="hidden" id="KCEfromUSD_buy" name="KCEfromUSD_buy" >
 
-                <button class="btn btn-success btn-block mt-3" type="submit">Buy</button>
-              </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button class="btn btn-success btn-block mt-3" type="submit">Buy</button>
+              </form>
             </div>
           </div>
         </div>
@@ -184,12 +182,11 @@ $rate = $row2['Price'];
                 You would get <span id="usd_sell">0</span> $
                 <input type="hidden" id="KCEtoUSD_sell" name="KCEtoUSD_sell" >
 
-                <button class="btn btn-success btn-block mt-3" type="submit">Sell</button>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button class="btn btn-success btn-block mt-3" type="submit">Sell</button>
+              </form>
             </div>
           </div>
         </div>
