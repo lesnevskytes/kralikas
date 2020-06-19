@@ -182,7 +182,6 @@ $rate = $row2['Price'];
                 You would get <span id="usd_sell">0</span> $
                 <input type="hidden" id="KCEtoUSD_sell" name="KCEtoUSD_sell" >
 
-              </form>
             </div>
             <div class="modal-footer">
               <button class="btn btn-success btn-block mt-3" type="submit">Sell</button>
