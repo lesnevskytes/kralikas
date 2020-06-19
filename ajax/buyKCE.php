@@ -35,5 +35,5 @@ if (isset($_POST['buyKCEwithUSD']) && isset($_POST['user_id']) && isset($_POST['
     $conn->close();
 
 }else{
-    echo json_encode('Wrong input');
+    echo json_encode(array('message' => "Wrong input", 'success' => false));
 }

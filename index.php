@@ -142,7 +142,7 @@ $rate = $row2['Price'];
             </div>
             <div class="modal-body">
               <form id="buyForm" method="post">
-                <h5>You have: <?php echo $money; ?> $ </h5>
+                <h5>You have: <span id="currentUSDmodal"><?php echo $money; ?></span> $ </h5>
                 <h5>KCE buy price: <?php echo $rate + 34.52; ?> $ </h5>
           
                 For how much you want to buy? 
@@ -173,7 +173,7 @@ $rate = $row2['Price'];
             </div>
             <div class="modal-body">
               <form id="sellForm" method="post">
-                <h5>You have: <?php echo $kce; ?> KCE </h5>
+                <h5>You have: <span id="currentKCEmodal"><?php echo $kce; ?></span> KCE </h5>
                 <h5>KCE sell price: <?php echo $rate - 34.52; ?> $ </h5>
           
                 How much you want to sell? 
@@ -214,6 +214,8 @@ $rate = $row2['Price'];
 
   const currentUSD = document.getElementById('currentUSD');
   const currentKCE = document.getElementById('currentKCE');
+  const currentUSDmodal = document.getElementById('currentUSDmodal');
+  const currentKCEmodal = document.getElementById('currentKCEmodal');
 
   //========For buying
   const usdInputBuy = document.getElementById('usdInputBuy');
@@ -263,6 +265,8 @@ $rate = $row2['Price'];
               if(obj.success){
                 currentUSD.innerHTML = (parseFloat(currentUSD.innerHTML) - usdSpent).toFixed(2);
                 currentKCE.innerHTML = (parseFloat(currentKCE.innerHTML) + kceBought).toFixed(6);
+                currentUSDmodal.innerHTML = currentUSD.innerHTML;
+                currentKCEmodal.innerHTML = currentKCE.innerHTML;
                 $('#buyModal').modal('toggle');
                 alert(obj.message);
               }else{
@@ -288,6 +292,8 @@ $rate = $row2['Price'];
               if(obj.success){
                 currentUSD.innerHTML = (parseFloat(currentUSD.innerHTML) + usdBought).toFixed(2);
                 currentKCE.innerHTML = (parseFloat(currentKCE.innerHTML) - kceSpent).toFixed(6);
+                currentUSDmodal.innerHTML = currentUSD.innerHTML;
+                currentKCEmodal.innerHTML = currentKCE.innerHTML;
                 $('#sellModal').modal('toggle');
                 alert(obj.message);
               }else{

@@ -17,7 +17,7 @@ if (isset($_POST['buyUSDwithKCE']) && isset($_POST['user_id']) && isset($_POST['
     $currentKCE = $row['kce'];
 
 
-    if($currentKCE - $userInputValue >= -1){
+    if($currentKCE - $userInputValue >= 0){
 
         //delete money 
         $sql = "UPDATE users SET money=($money + $USD_got), kce=($currentKCE - $userInputValue) WHERE id=$userId";
@@ -36,5 +36,5 @@ if (isset($_POST['buyUSDwithKCE']) && isset($_POST['user_id']) && isset($_POST['
     $conn->close();
 
 }else{
-    echo json_encode('Wrong input');
+    echo json_encode(array('message' => "Wrong input", 'success' => false));
 }
