@@ -4,7 +4,7 @@ if (isset($_POST['buyUSDwithKCE']) && isset($_POST['user_id']) && isset($_POST['
     $userInputValue = $_POST['buyUSDwithKCE'];
     $userId = $_POST['user_id'];
     $USD_got = $_POST['KCEtoUSD_sell'];
-
+    $sellRate = $_POST['sellRate'];
 
 
     $conn = new mysqli('localhost', 'root','','praktika');
@@ -21,9 +21,12 @@ if (isset($_POST['buyUSDwithKCE']) && isset($_POST['user_id']) && isset($_POST['
 
         //delete money 
         $sql = "UPDATE users SET money=($money + $USD_got), kce=($currentKCE - $userInputValue) WHERE id=$userId";
+        $sql_log = "INSERT INTO log (userId, operation, spent, got, rate) VALUES ('$userId', 'sell', '$userInputValue', '$USD_got', '$sellRate')";
 
         if ($conn->query($sql) === TRUE) {
-            echo json_encode(array('message' => 'Congrats! You sold '. $userInputValue .' KCE for'.$USD_got, 'success' => true));
+            echo json_encode(array('message' => 'Congrats! You sold '. $userInputValue .' KCE for '.$USD_got, 'success' => true));
+            
+            $conn->query($sql_log);
         } else {
             echo json_encode(array('message' => "Updating balance ERROR", 'success' => false));
         }
